@@ -1,0 +1,6 @@
+Cocinero - dejan de cocinar cuando no hay clientes. Deberá indicar que está haciendo en todo momento
+
+- Pizzero - 12€
+- Bocadillero - 6€
+
+Cliente - elige o pizza o bocadillo. 
