@@ -1,6 +1,46 @@
-Cocinero - dejan de cocinar cuando no hay clientes. Deberá indicar que está haciendo en todo momento
+Cocinero - dejan de cocinar cuando no hay clientes.
+Deberá indicar que está haciendo en todo momento
 
 - Pizzero - 12€
-- Bocadillero - 6€
+    · Estirar masa -> 2s
+    · Poner los ingredientes -> 1s
+    · Cocinar la pizza -> 5s
 
-Cliente - elige o pizza o bocadillo. 
+- Bocadillero - 6€
+    · Cortar el pan -> 1s
+    · Poner mayonesa en el pan -> 1s
+    · Poner resto de ingredientes -> 2s
+    · Envolver el bocadillo -> 3s
+
+Cliente - elige o pizza o bocadillo y cantidad (<5).
+Esperar si alguien delante.
+Turno: Coger todo lo que pueda. Si no se completa, espera 10s.
+
+Cuando se acabe el dia se indicarán:
+- Bocadillos servidos
+- Pizzas servidas
+- Dinero recaudado
+
+El usuario indica cuantos clientes entran
+
+--------------------------------------------------------------------------------
+
+Clases:
+- Restaurante
+    · Control de cantidad de bocadillos, pizzas y dinero recaudado
+    · Cierra cuando no hay clientes
+    · Al cerrar se muestran los datos almacenados
+
+Hebras:
+- Pizzero
+- Bocatero
+- Cocinero (Clase Heredada)
+    · Todo el rato trabajando
+    · Esperar el tiempo indicado
+    · Antes de dormirse, se indica que paso está haciendo el hilo
+    · Cuando termina, incrementa la cantidad de productos disponibles
+    · Para cuando se acaba el programa
+
+- Cliente
+    · Elige aleatoriamente pizza o bocata y su cantidad - 10s
+    · 
