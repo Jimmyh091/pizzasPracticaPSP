@@ -21,9 +21,16 @@ public abstract class Cocinero extends Thread{
     public void run(){
         while(restaurante.getNumClientes() > 0){
             cocinar();
+            servir();
         }
     }
     
     public abstract void cocinar();
     public abstract void servir();
+    
+    // --- //    
+
+    public Restaurante getRestaurante() {
+        return restaurante;
+    }    
 }

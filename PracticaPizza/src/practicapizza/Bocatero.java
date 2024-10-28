@@ -29,36 +29,27 @@ public class Bocatero extends Cocinero{
 
     @Override
     public void cocinar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    private void cortarPan(){
         System.out.println("Cortando pan");
         dormir(1);
         panCortado = true;
         
-    }    
-    private void ponerMayonesa(){
         System.out.println("Poniendo la mayonesa");
         dormir(2);
         mayonesaPuesta = true;
         
-    }    
-    private void ponerIngredientes(){
         System.out.println("Poniendo los ingredientes");
         dormir(2);
         ingredientesPuestos = true;
-    }    
-    private void envolverBocadillo(){
+        
         System.out.println("Envolviendo el bocadillo");
         dormir(3);
         panCortado = true;
-        
     }
-
+    
     @Override
     public void servir(){
-        restaurante
+        System.out.println("Sirviendo bocadillo");
+        super.getRestaurante().servirBocadillo();
         
         panCortado = false;
         mayonesaPuesta = false;

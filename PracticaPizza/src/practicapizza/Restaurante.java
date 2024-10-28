@@ -5,6 +5,8 @@
 package practicapizza;
 
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,6 +23,7 @@ public class Restaurante {
     private int[] mostrador;
     
     private Semaphore[] semaforosMostrador;
+    private Semaphore semaforoNumClientes;
     
     public Restaurante(int n){
         numClientes = n;
@@ -32,7 +35,37 @@ public class Restaurante {
         mostrador = new int[2]; // 0 = pizzas, 1 = bocadillos
     }
 
-    public int getNumClientes() {
+    
+    public synchronized void servirPizza(){
+        mostrador[0]++;
+    }
+    public synchronized void recogerPizza(){
+        mostrador[0]--;
+    }
+    
+    public synchronized void servirBocadillo(){
+        mostrador[1]++;
+    }
+    public synchronized void recogerBocadillo(){
+        mostrador[1]--;
+    }
+    
+    public synchronized void entrarCliente(){
+        numClientes++;
+    }
+    
+    public synchronized void pagar(int precio){
+        dineroRecaudado += precio;
+    }
+    
+    // --- //
+
+    public synchronized int[] getMostrador() {
+        return mostrador;
+    }
+    
+    public synchronized int getNumClientes() {
         return numClientes;
     }
+    
 }
