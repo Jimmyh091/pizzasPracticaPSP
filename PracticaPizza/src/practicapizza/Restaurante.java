@@ -22,7 +22,7 @@ public class Restaurante {
     
     private int[] mostrador;
     
-    private Semaphore[] semaforosMostrador;
+    private Semaphore[] semaforosMostrador; // haria falta no
     private Semaphore semaforoNumClientes;
     
     public Restaurante(int n){
@@ -41,6 +41,7 @@ public class Restaurante {
     }
     public synchronized void recogerPizza(){
         mostrador[0]--;
+        pizzasVendidas++;
     }
     
     public synchronized void servirBocadillo(){
@@ -48,6 +49,7 @@ public class Restaurante {
     }
     public synchronized void recogerBocadillo(){
         mostrador[1]--;
+        bocadillosVendidos++;
     }
     
     public synchronized void entrarCliente(){
