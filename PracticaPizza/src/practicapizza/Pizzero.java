@@ -19,6 +19,10 @@ public class Pizzero extends Cocinero{
     
     public Pizzero(Restaurante r){
         super(r);
+        
+        masaEstirada = false;
+        ingredientesPuestos = false;
+        pizzaCocinada = false;
     }
     
     @Override

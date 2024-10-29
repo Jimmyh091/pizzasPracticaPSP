@@ -25,30 +25,35 @@ public class Cliente extends Thread{
         System.out.println("El cliente sopesa sus opciones...");
         
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
-        tipoProducto = (int) Math.random() * 1; // esto no seria siempre 0
+        tipoProducto = (int) (Math.random() * 1); // esto no seria siempre 0
         precio = (tipoProducto == 0) ? 12 : 6; 
-        cantidad = (int) Math.random() * (4 + 1);
+        cantidad = (int) (Math.random() * (4 + 1));
         
         this.start(); // ???
     }
     
     @Override
     public void run(){ // paga cuando termina?
-        int cantidadRecogida = 0;
+         int cantidadRecogida = 0;
         boolean satisfecho = false;
         do {
             
             System.out.println("El cliente recoge sus productos");
-            while(restaurante.getMostrador()[tipoProducto] > 0 || cantidadRecogida != cantidad){
-                if (tipoProducto == 0) restaurante.recogerPizza();
-                else restaurante.recogerBocadillo();
+            while(restaurante.getMostrador()[tipoProducto] > 0){
+                if (cantidadRecogida != cantidad) {
+                    
+                    if (tipoProducto == 0) restaurante.recogerPizza();
+                    else restaurante.recogerBocadillo();
 
-                cantidadRecogida++;
+                    cantidadRecogida++;
+                }else{
+                    break;
+                }
             }
 
             if (cantidadRecogida == cantidad){
@@ -64,7 +69,7 @@ public class Cliente extends Thread{
                 }
             }
             
-        } while (satisfecho);
+        } while (!satisfecho);
         
         System.out.println("El cliente paga y se va");
         restaurante.pagar(precio * cantidad);

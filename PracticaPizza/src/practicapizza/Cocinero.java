@@ -15,6 +15,7 @@ public abstract class Cocinero extends Thread{
     
     public Cocinero(Restaurante r){
         restaurante = r;
+        this.start();
     }
     
     @Override
