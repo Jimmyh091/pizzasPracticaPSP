@@ -23,7 +23,11 @@ public class Test {
         
         @Override
         public void run(){
-            sumar(num);
+            if (num == 0) {
+                sumar(num);                
+            }else{
+                suma(num);
+            }
         }
     }
     
@@ -62,6 +66,13 @@ public class Test {
     public synchronized static void sumar(int n){
         for (int i = 0; i < 10; i++) {
             System.out.println("Sumando..." + a + " (" + n + ")");
+            a++;
+        }
+    }
+    
+    public synchronized static void suma(int n){
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Sumando..." + a);
             a++;
         }
     }

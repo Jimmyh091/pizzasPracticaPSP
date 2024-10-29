@@ -35,7 +35,11 @@ public class Restaurante {
         mostrador = new int[2]; // 0 = pizzas, 1 = bocadillos
     }
 
-    
+    /* he intentado hacerlo asi pero creo que no es una manera correcta
+    public synchronized void servirPizza(){
+        mostrador[0]++;
+    }
+    */
     public synchronized void servirPizza(){
         mostrador[0]++;
     }
