@@ -22,15 +22,7 @@ public class Cliente extends Thread{
     public Cliente(Restaurante r){
         restaurante = r;
         
-        System.out.println("El cliente sopesa sus opciones...Sabe que Jaime es manco pero sopesa el nivel de manco");
-        
-        try {
-            restaurante.semaforoClientes.acquire();
-            restaurante.numClientes++;
-            restaurante.semaforoClientes.release();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("El cliente sopesa sus opciones... Sabe que Jaime es manco pero sopesa el nivel de manco");
         
         tipoProducto = (Math.random() <= 0.5) ? 0 : 1; //no me iba bien
         precio = (tipoProducto == 0) ? 12 : 6; 
@@ -51,7 +43,7 @@ public class Cliente extends Thread{
             do {
                 
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -76,13 +68,29 @@ public class Cliente extends Thread{
                 restaurante.semaforosMostrador[tipoProducto].release();
             } while (!satisfecho);
             
-           // restaurante.semaforosMostrador[tipoProducto].release();
-            
             System.out.println("El cliente paga y se va");
             
             restaurante.semaforoDineroRecaudado.acquire();
             restaurante.dineroRecaudado += precio * cantidad;
             restaurante.semaforoDineroRecaudado.release();
+            
+            if (tipoProducto == 0) {
+                
+                restaurante.semaforoPizzasVendidas.acquire();
+                restaurante.pizzasVendidas += cantidad;
+                restaurante.semaforoPizzasVendidas.release();
+                
+            }else{
+                
+                restaurante.semaforoBocadillosVendidos.acquire();
+                restaurante.bocadillosVendidos += cantidad;
+                restaurante.semaforoBocadillosVendidos.release();
+                
+            }
+            
+            restaurante.semaforoClientes.acquire();
+            restaurante.numClientes--;
+            restaurante.semaforoClientes.release();
             
         } catch (InterruptedException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
