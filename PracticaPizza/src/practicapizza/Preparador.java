@@ -56,7 +56,7 @@ public class Preparador extends Thread{
             
             try {
                 
-                restaurante.semaforosMostrador[tipoProducto].acquire();
+                restaurante.semaforosMostrador[tipoProducto].acquire();                
                 restaurante.mostrador[tipoProducto]++;
                 restaurante.semaforosMostrador[tipoProducto].release();
                 
