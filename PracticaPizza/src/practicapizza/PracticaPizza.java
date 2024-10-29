@@ -10,7 +10,7 @@ import java.util.Scanner;
 /*
 DUDASSS
 
-ninguna ( ͡° ͜ʖ ͡°)
+ninguna ( ͡° ͜ʖ ͡°) (mentira)
 */
 /**
  *
