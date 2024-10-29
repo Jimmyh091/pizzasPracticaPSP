@@ -29,21 +29,18 @@ public class Pizzero extends Cocinero{
     public void cocinar() {
         System.out.println("Estirando la masa");
         dormir(2);
-        masaEstirada = true;
         
         System.out.println("Poniendo los ingredientes");
         dormir(1);
-        ingredientesPuestos = true;
         
         System.out.println("Cocinando la pizza");
         dormir(5);
-        pizzaCocinada = true;
     }
     
     @Override
     public void servir() {
         System.out.println("Sirviendo pizza");
-        super.getRestaurante().servirPizza();
+        super.getRestaurante();
         
         masaEstirada = false;
         ingredientesPuestos = false;

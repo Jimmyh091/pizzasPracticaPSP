@@ -24,18 +24,13 @@ public class PracticaPizza {
         int numClientes = sc.nextInt();
         
         Restaurante restaurante = new Restaurante(numClientes);
-        Pizzero pizzero = new Pizzero(restaurante);
-        Bocatero bocatero = new Bocatero(restaurante);
-        for (int i = 0; i < numClientes; i++) {
-            try {
-                Cliente c = new Cliente(restaurante);
-                c.join();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PracticaPizza.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        Preparador pizzero = new Preparador(restaurante, 0);
+        Preparador bocatero = new Preparador(restaurante, 1);
         
-        restaurante.mostrarResultados();
+        for (int i = 0; i < numClientes; i++) {
+            Cliente c = new Cliente(restaurante);
+            c.start();
+        }
     }
     
 }

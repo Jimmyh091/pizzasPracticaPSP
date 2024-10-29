@@ -19,7 +19,7 @@ public abstract class Cocinero extends Thread{
     
     @Override
     public void run(){
-        while(restaurante.getNumClientes() > 0){
+        while(restaurante.numClientes > 0){
             cocinar();
             servir();
         }

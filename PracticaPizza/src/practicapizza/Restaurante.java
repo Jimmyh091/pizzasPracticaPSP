@@ -31,23 +31,6 @@ public class Restaurante {
         mostrador = new int[]{0, 0}; // 0 = pizzas, 1 = bocadillos
     }
     
-    
-    public void servirPizza(){
-        mostrador[0]++;
-    }
-    public void recogerPizza(){
-        mostrador[0]--;
-        pizzasVendidas++;
-    }
-    
-    public void servirBocadillo(){
-        mostrador[1]++;
-    }
-    public void recogerBocadillo(){
-        mostrador[1]--;
-        bocadillosVendidos++;
-    }
-    
     public void entrarCliente(){
         numClientes++;
     }
@@ -60,15 +43,4 @@ public class Restaurante {
     public void mostrarResultados(){
         System.out.println("Dinero recaudado: " + dineroRecaudado + "\nPizzas vendidas: " + pizzasVendidas + "\nBocadillos vendidos: " + bocadillosVendidos);
     }
-    
-    // --- //
-
-    public int[] getMostrador() {
-        return mostrador;
-    }
-    
-    public int getNumClientes() {
-        return numClientes;
-    }
-    
 }

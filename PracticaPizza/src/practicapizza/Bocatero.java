@@ -13,18 +13,9 @@ import java.util.logging.Logger;
  */
 public class Bocatero extends Cocinero{
     
-    private boolean panCortado;
-    private boolean mayonesaPuesta;
-    private boolean ingredientesPuestos;
-    private boolean bocadilloEnvuelto;
     
     public Bocatero(Restaurante r){
         super(r);
-        
-        panCortado = false;
-        mayonesaPuesta = false;
-        ingredientesPuestos = false;
-        bocadilloEnvuelto = false;
     }
 
     @Override
@@ -45,12 +36,7 @@ public class Bocatero extends Cocinero{
     @Override
     public void servir(){
         System.out.println("Sirviendo bocadillo");
-        super.getRestaurante().mostrador[]++;
-        
-        panCortado = false;
-        mayonesaPuesta = false;
-        ingredientesPuestos = false;
-        bocadilloEnvuelto = false;
+        super.getRestaurante().mostrador[0]++;
     }
     
     public void dormir(int segundos) {

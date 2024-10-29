@@ -5,6 +5,9 @@
  */
 package practicapizza;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -23,7 +26,42 @@ public class Preparador extends Thread{
     @Override
     public void run(){
         while(restaurante.numClientes > 0){
+            if (tipoProducto == 0) { // pizzas
+                
+                System.out.println("Estirando la masa");
+                dormir(2);
+
+                System.out.println("Poniendo los ingredientes");
+                dormir(1);
+
+                System.out.println("Cocinando la pizza");
+                dormir(5);
+                
+            }else{
+                
+                System.out.println("Cortando pan");
+                dormir(1);
+
+                System.out.println("Poniendo la mayonesa");
+                dormir(2);
+
+                System.out.println("Poniendo los ingredientes");
+                dormir(2);
+
+                System.out.println("Envolviendo el bocadillo");
+                dormir(3);
+                
+            }
             
+            try {
+                
+                restaurante.semaforosMostrador[tipoProducto].acquire();
+                restaurante.mostrador[tipoProducto]++;
+                restaurante.semaforosMostrador[tipoProducto].release();
+                
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Preparador.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
