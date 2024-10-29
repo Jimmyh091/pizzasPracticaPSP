@@ -62,7 +62,7 @@ public class Restaurante {
         bocatero.start();
         
         for (int i = 0; i < numClientes; i++) {
-            Cliente c = new Cliente(restaurante);
+            Cliente c = new Cliente(restaurante, i);
             c.start();
         }
     }

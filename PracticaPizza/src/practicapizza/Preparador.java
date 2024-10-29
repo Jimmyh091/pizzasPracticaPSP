@@ -56,6 +56,10 @@ public class Preparador extends Thread{
             
             try {
                 
+                String linea = (tipoProducto == 0) ? "El pizzero " : "El bocatero ";
+                linea += "va a servir su producto";                
+                System.out.println(linea);
+                
                 restaurante.semaforosMostrador[tipoProducto].acquire();                
                 restaurante.mostrador[tipoProducto]++;
                 restaurante.semaforosMostrador[tipoProducto].release();
