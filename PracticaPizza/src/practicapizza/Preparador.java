@@ -13,10 +13,12 @@ import java.util.logging.Logger;
  *
  * @author EAG
  */
+
 public class Preparador extends Thread{
     
     private Restaurante restaurante;
     private int tipoProducto;
+    
     
     public Preparador(Restaurante r, int t){
         restaurante = r;
@@ -62,6 +64,7 @@ public class Preparador extends Thread{
                 
                 restaurante.semaforosMostrador[tipoProducto].acquire();                
                 restaurante.mostrador[tipoProducto]++;
+                System.out.println("Hay " + restaurante.mostrador[tipoProducto] + "");
                 restaurante.semaforosMostrador[tipoProducto].release();
                 
             } catch (InterruptedException ex) {
