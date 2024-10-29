@@ -14,12 +14,17 @@ public class Restaurante {
     
     public int numClientes;
     
-    private int pizzasVendidas;
-    private int bocadillosVendidos;
-    private int dineroRecaudado;
+    public int pizzasVendidas;
+    public int bocadillosVendidos;
+    public int dineroRecaudado;
     
     public int[] mostrador;
+    
     public Semaphore[] semaforosMostrador;
+    public Semaphore semaforoClientes;
+    public Semaphore semaforoPizzasVendidas;
+    public Semaphore semaforoBocadillosVendidos;
+    public Semaphore semaforoDineroRecaudado;
     
     public Restaurante(int n){
         numClientes = n;
@@ -29,15 +34,12 @@ public class Restaurante {
         dineroRecaudado = 0;
         
         mostrador = new int[]{0, 0}; // 0 = pizzas, 1 = bocadillos
-    }
-    
-    public void entrarCliente(){
-        numClientes++;
-    }
-    
-    public void pagar(int precio){
-        dineroRecaudado += precio;
-        numClientes--;
+        
+        semaforosMostrador = new Semaphore[]{new Semaphore(1), new Semaphore(1)};
+        semaforoClientes = new Semaphore(1);
+        semaforoPizzasVendidas = new Semaphore(1);
+        semaforoBocadillosVendidos = new Semaphore(1);
+        semaforoDineroRecaudado = new Semaphore(1);
     }
     
     public void mostrarResultados(){

@@ -22,14 +22,16 @@ public class Cliente extends Thread{
     public Cliente(Restaurante r){
         restaurante = r;
         
-        System.out.println("El cliente sopesa sus opciones...");
+        System.out.println("El cliente sopesa sus opciones...Sabe que Jaime es manco pero sopesa el nivel de manco");
         
         try {
-            Thread.sleep(1000);
+            restaurante.semaforoClientes.acquire();
+            restaurante.numClientes++;
+            restaurante.semaforoClientes.release();
         } catch (InterruptedException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-                
+        
         tipoProducto = (Math.random() <= 0.5) ? 0 : 1; //no me iba bien
         precio = (tipoProducto == 0) ? 12 : 6; 
         cantidad = (int) (Math.random() * (4 - 1) + 1);
@@ -46,17 +48,22 @@ public class Cliente extends Thread{
             int cantidadRecogida = 0;
             boolean satisfecho = false;
             
-            restaurante.semaforosMostrador[tipoProducto].acquire();
             do {
-                while(restaurante.mostrador[tipoProducto] > 0){
-                    if (cantidadRecogida != cantidad) {
-                        
-                        restaurante.mostrador[tipoProducto]--;
-                        cantidadRecogida++;
-                        
-                    }else{
-                        break;
-                    }
+                
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                restaurante.semaforosMostrador[tipoProducto].acquire();
+                
+                if (restaurante.mostrador[tipoProducto] >= cantidad - cantidadRecogida) {
+                    restaurante.mostrador[tipoProducto] -= cantidad - cantidadRecogida;
+                    cantidadRecogida = cantidad;
+                }else{
+                    cantidadRecogida += restaurante.mostrador[tipoProducto];
+                    restaurante.mostrador[tipoProducto] = 0;
                 }
                 
                 if (cantidadRecogida == cantidad){
@@ -64,20 +71,18 @@ public class Cliente extends Thread{
                     satisfecho = true;
                 }else{
                     System.out.println("El cliente no esta satisfecho y espera");
-                    
-                    try {
-                        sleep(10000);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                 }
-
+                
+                restaurante.semaforosMostrador[tipoProducto].release();
             } while (!satisfecho);
             
-            restaurante.semaforosMostrador[tipoProducto].release();
+           // restaurante.semaforosMostrador[tipoProducto].release();
             
             System.out.println("El cliente paga y se va");
-            restaurante.pagar(precio * cantidad);
+            
+            restaurante.semaforoDineroRecaudado.acquire();
+            restaurante.dineroRecaudado += precio * cantidad;
+            restaurante.semaforoDineroRecaudado.release();
             
         } catch (InterruptedException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);

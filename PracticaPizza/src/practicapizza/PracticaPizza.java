@@ -6,9 +6,12 @@
 package practicapizza;
 
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+/*
+DUDASSS
+
+ninguna ( ͡° ͜ʖ ͡°)
+*/
 /**
  *
  * @author EAG
@@ -26,6 +29,9 @@ public class PracticaPizza {
         Restaurante restaurante = new Restaurante(numClientes);
         Preparador pizzero = new Preparador(restaurante, 0);
         Preparador bocatero = new Preparador(restaurante, 1);
+        
+        pizzero.start();
+        bocatero.start();
         
         for (int i = 0; i < numClientes; i++) {
             Cliente c = new Cliente(restaurante);

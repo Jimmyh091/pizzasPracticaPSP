@@ -25,6 +25,7 @@ public class Preparador extends Thread{
     
     @Override
     public void run(){
+        
         while(restaurante.numClientes > 0){
             if (tipoProducto == 0) { // pizzas
                 
