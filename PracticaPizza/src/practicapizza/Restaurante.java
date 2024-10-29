@@ -20,8 +20,6 @@ public class Restaurante {
     
     private int[] mostrador;
     
-    private Semaphore[] semaforosMostrador; // haria falta no
-    
     public Restaurante(int n){
         numClientes = n;
         
@@ -62,7 +60,7 @@ public class Restaurante {
         numClientes--;
     }
     
-    private void mostrarResultados(){
+    public void mostrarResultados(){
         System.out.println("Dinero recaudado: " + dineroRecaudado + "\nPizzas vendidas: " + pizzasVendidas + "\nBocadillos vendidos: " + bocadillosVendidos);
     }
     

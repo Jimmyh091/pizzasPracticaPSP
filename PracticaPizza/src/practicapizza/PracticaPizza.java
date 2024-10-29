@@ -6,6 +6,8 @@
 package practicapizza;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,8 +27,15 @@ public class PracticaPizza {
         Pizzero pizzero = new Pizzero(restaurante);
         Bocatero bocatero = new Bocatero(restaurante);
         for (int i = 0; i < numClientes; i++) {
-            new Cliente(restaurante);
+            try {
+                Cliente c = new Cliente(restaurante);
+                c.join();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PracticaPizza.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+        restaurante.mostrarResultados();
     }
     
 }

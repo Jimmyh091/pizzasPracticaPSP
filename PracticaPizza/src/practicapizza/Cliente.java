@@ -30,10 +30,13 @@ public class Cliente extends Thread{
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
-        tipoProducto = (int) (Math.random() * 1); // esto no seria siempre 0
+        tipoProducto = (Math.random() <= 0.5) ? 0 : 1; //no me iba bien
         precio = (tipoProducto == 0) ? 12 : 6; 
-        cantidad = (int) (Math.random() * (4 + 1));
+        cantidad = (int) (Math.random() * (4 - 1) + 1);
         
+        System.out.print("El cliente quiere " + cantidad + " ");
+        if (tipoProducto == 0) System.out.println("pizzas");
+        else System.out.println("bocadillos");
         this.start(); // ???
     }
     
@@ -42,8 +45,6 @@ public class Cliente extends Thread{
          int cantidadRecogida = 0;
         boolean satisfecho = false;
         do {
-            
-            System.out.println("El cliente recoge sus productos");
             while(restaurante.getMostrador()[tipoProducto] > 0){
                 if (cantidadRecogida != cantidad) {
                     
