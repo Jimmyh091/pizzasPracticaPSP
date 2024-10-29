@@ -12,13 +12,14 @@ import java.util.concurrent.Semaphore;
  */
 public class Restaurante {
     
-    private int numClientes;
+    public int numClientes;
     
     private int pizzasVendidas;
     private int bocadillosVendidos;
     private int dineroRecaudado;
     
-    private int[] mostrador;
+    public int[] mostrador;
+    public Semaphore[] semaforosMostrador;
     
     public Restaurante(int n){
         numClientes = n;
@@ -29,33 +30,29 @@ public class Restaurante {
         
         mostrador = new int[]{0, 0}; // 0 = pizzas, 1 = bocadillos
     }
-
-    /* funciona de esta manera pero creo que no es la forma correcta
-    public synchronized void servirPizza(){
+    
+    
+    public void servirPizza(){
         mostrador[0]++;
     }
-    */
-    public synchronized void servirPizza(){
-        mostrador[0]++;
-    }
-    public synchronized void recogerPizza(){
+    public void recogerPizza(){
         mostrador[0]--;
         pizzasVendidas++;
     }
     
-    public synchronized void servirBocadillo(){
+    public void servirBocadillo(){
         mostrador[1]++;
     }
-    public synchronized void recogerBocadillo(){
+    public void recogerBocadillo(){
         mostrador[1]--;
         bocadillosVendidos++;
     }
     
-    public synchronized void entrarCliente(){
+    public void entrarCliente(){
         numClientes++;
     }
     
-    public synchronized void pagar(int precio){
+    public void pagar(int precio){
         dineroRecaudado += precio;
         numClientes--;
     }
@@ -66,11 +63,11 @@ public class Restaurante {
     
     // --- //
 
-    public synchronized int[] getMostrador() {
+    public int[] getMostrador() {
         return mostrador;
     }
     
-    public synchronized int getNumClientes() {
+    public int getNumClientes() {
         return numClientes;
     }
     

@@ -11,7 +11,6 @@ package practicapizza;
 public abstract class Cocinero extends Thread{
     
     private Restaurante restaurante;
-    private boolean trabajando;
     
     public Cocinero(Restaurante r){
         restaurante = r;

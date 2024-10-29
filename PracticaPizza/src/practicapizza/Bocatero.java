@@ -31,25 +31,21 @@ public class Bocatero extends Cocinero{
     public void cocinar() {
         System.out.println("Cortando pan");
         dormir(1);
-        panCortado = true;
         
         System.out.println("Poniendo la mayonesa");
         dormir(2);
-        mayonesaPuesta = true;
         
         System.out.println("Poniendo los ingredientes");
         dormir(2);
-        ingredientesPuestos = true;
         
         System.out.println("Envolviendo el bocadillo");
         dormir(3);
-        panCortado = true;
     }
     
     @Override
     public void servir(){
         System.out.println("Sirviendo bocadillo");
-        super.getRestaurante().servirBocadillo();
+        super.getRestaurante().mostrador[]++;
         
         panCortado = false;
         mayonesaPuesta = false;

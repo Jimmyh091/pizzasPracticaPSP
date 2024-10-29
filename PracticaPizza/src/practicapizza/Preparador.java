@@ -5,10 +5,33 @@
  */
 package practicapizza;
 
+
 /**
  *
  * @author EAG
  */
-public class Preparador {
+public class Preparador extends Thread{
     
+    private Restaurante restaurante;
+    private int tipoProducto;
+    
+    public Preparador(Restaurante r, int t){
+        restaurante = r;
+        tipoProducto = t;
+    }
+    
+    @Override
+    public void run(){
+        while(restaurante.numClientes > 0){
+            
+        }
+    }
+    
+    public void dormir(int segundos) {
+        try {
+            Thread.sleep(segundos * 1000);
+        } catch (InterruptedException ex) {
+            System.out.println("El hilo no quiere dormir");
+        }
+    }
 }
