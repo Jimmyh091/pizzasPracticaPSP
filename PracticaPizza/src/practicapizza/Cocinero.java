@@ -32,9 +32,9 @@ public class Cocinero extends Thread{
     public class Par{
         
         String[] acciones;
-        int segundos;
+        int[] segundos;
         
-        public Par(String[] d, int s){
+        public Par(String[] d, int[] s){
             acciones = d;
             segundos = s;
         }
@@ -42,9 +42,9 @@ public class Cocinero extends Thread{
         public void ejectuar(){
             try {
                 
-                for (String accion : acciones) {
-                    System.out.println(accion);
-                    Thread.sleep(segundos * 1000);
+                for (int i = 0; i < acciones.length(); i++) {
+                    System.out.println(accion[i]);
+                    Thread.sleep(segundos[i] * 1000);
                 }
                 
             } catch (InterruptedException ex) {
@@ -53,20 +53,21 @@ public class Cocinero extends Thread{
         }
     }
     
-    public Cocinero(Restaurante r, int t){
+    public Cocinero(Restaurante r, int t, String[] textoAcciones, int[] segundos){
         restaurante = r;
         tipoProducto = t;
+        
+        acciones = new Par(textoAcciones, segundos);
     }
     
     @Override
     public void run(){
         
         // Va a trabajar mientras haya algun cliente
-        while(restaurante.numClientes > 0){            
+        while(restaurante.numClientes > 0){ 
             
-            /*
-            METER CLASE PAIR !!!
-            */
+            // Preparar el producto
+            acciones.ejecutar();
             
             // Despues de preparar su producto, lo intenta servir con el semaforo asignado.
             // Tambien muestra la cantidad de productos en el mostrador

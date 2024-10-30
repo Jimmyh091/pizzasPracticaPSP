@@ -91,8 +91,17 @@ public class Restaurante {
         int numClientes = sc.nextInt();
         
         Restaurante restaurante = new Restaurante(numClientes);
-        Cocinero pizzero = new Cocinero(restaurante, 0);
-        Cocinero bocatero = new Cocinero(restaurante, 1);
+        
+        String[] accionesPizzero = {"Estirando la masa", "Poniendo los ingredientes", "Cocinando la pizza"};
+        int[] segundosPizzero = {2, 1, 5};
+        
+        
+        
+        String[] accionesBocatero = {"Cortando pan", "Poniendo la mayonesa", "Poniendo los ingredientes", "Envolviendo el bocadillo"};
+        int[] segundosBocatero = {1, 2, 2, 3};
+        
+        Cocinero pizzero = new Cocinero(restaurante, 0, accionesPizzero, segundosPizzero);
+        Cocinero bocatero = new Cocinero(restaurante, 1, accionesBocatero, segundosBocatero);
         
         pizzero.start();
         bocatero.start();
