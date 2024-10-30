@@ -79,7 +79,9 @@ public class Cocinero extends Thread{
                 
                 restaurante.semaforosMostrador[tipoProducto].acquire();                
                 restaurante.mostrador[tipoProducto]++;
-                System.out.println("Hay " + restaurante.mostrador[tipoProducto] + "");
+                String lineaAux = "Hay " + restaurante.mostrador[tipoProducto];
+                lineaAux += (tipoProducto == 0) ? " pizzas" : " bocadillos";
+                System.out.println(lineaAux);
                 restaurante.semaforosMostrador[tipoProducto].release();
                 
             } catch (InterruptedException ex) {
@@ -90,7 +92,9 @@ public class Cocinero extends Thread{
         // Cuando se vaya a acabar el programa, se mostrara un resumen del dia,
         // y el pizzero o bocatero llamara al metodo del restaurante resumen para verlo.
         // (El programa acaba cuando no quedan clientes).
-        restaurante.mostrarResultados();
+        if (tipoProducto == 0) {
+            restaurante.mostrarResultados();            
+        }
     }
     
     // Este metodo existe para aliviar visualmente el codigo: en vez de tener que poner el try

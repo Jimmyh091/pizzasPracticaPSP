@@ -37,6 +37,7 @@ public class Cliente extends Thread {
 
     @Override
     public void run() {
+        
         System.out.println("El cliente " + id + " sopesa sus opciones...");
         
         // Asignamos los valores
@@ -69,13 +70,21 @@ public class Cliente extends Thread {
             // Si no, se suma la que hay en el mostrador y se queda el mostrador vacio.
             // Con el bucle volveria a hacer el if hasta que el cliente qeude satisfecho.
             if (restaurante.mostrador[tipoProducto] >= cantidad - cantidadRecogida) {
+                System.out.println("El cliente recoge los alimentos que necesita");
                 restaurante.mostrador[tipoProducto] -= cantidad - cantidadRecogida;
                 cantidadRecogida = cantidad;
             } else {
                 cantidadRecogida += restaurante.mostrador[tipoProducto];
+                if (cantidadRecogida == 0) {
+                    System.out.println("El cliente no recoge nada");
+                }else{
+                    System.out.println("El cliente recoge " + cantidadRecogida);                    
+                }
                 restaurante.mostrador[tipoProducto] = 0;
             }
 
+            // ha cogido x pizzas
+            
             if (cantidadRecogida == cantidad) {
                 System.out.println("El cliente esta satisfecho, paga y se va");
             } else {
