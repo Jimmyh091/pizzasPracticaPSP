@@ -11,6 +11,40 @@ import java.util.concurrent.Semaphore;
  *
  * @author jaime
  */
+
+/*pa luego
+// Preparando las pizzas
+            if (tipoProducto == 0) {
+                
+                System.out.println("Estirando la masa");
+                dormir(2);
+
+                System.out.println("Poniendo los ingredientes");
+                dormir(1);
+
+                System.out.println("Cocinando la pizza");
+                dormir(5);
+                
+            // Preparando los bocadillos
+            }else{
+                
+                System.out.println("Cortando pan");
+                dormir(1);
+
+                System.out.println("Poniendo la mayonesa");
+                dormir(2);
+
+                System.out.println("Poniendo los ingredientes");
+                dormir(2);
+
+                System.out.println("Envolviendo el bocadillo");
+                dormir(3);
+                
+            }
+*/
+
+// El restaurante es la clase que actua como medio entre los hilos. Aqui se manejan
+// las acciones y los datos recopilados durante la ejecucion.
 public class Restaurante {
     
     public int numClientes;
@@ -44,7 +78,9 @@ public class Restaurante {
     }
     
     public void mostrarResultados(){
-        System.out.println("Dinero recaudado: " + dineroRecaudado + "\nPizzas vendidas: " + pizzasVendidas + "\nBocadillos vendidos: " + bocadillosVendidos);
+        System.out.println("\nDinero recaudado: " + dineroRecaudado + 
+                "\nPizzas vendidas: " + pizzasVendidas + 
+                "\nBocadillos vendidos: " + bocadillosVendidos);
     }
     
     // --- // --- //
@@ -55,8 +91,8 @@ public class Restaurante {
         int numClientes = sc.nextInt();
         
         Restaurante restaurante = new Restaurante(numClientes);
-        Preparador pizzero = new Preparador(restaurante, 0);
-        Preparador bocatero = new Preparador(restaurante, 1);
+        Cocinero pizzero = new Cocinero(restaurante, 0);
+        Cocinero bocatero = new Cocinero(restaurante, 1);
         
         pizzero.start();
         bocatero.start();
