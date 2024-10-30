@@ -94,19 +94,22 @@ public class Cliente extends Thread {
             // Se paga
             restaurante.semaforoDineroRecaudado.acquire();
             restaurante.dineroRecaudado += precio * cantidad;
+            System.out.println("Dinero recaudado: " + restaurante.dineroRecaudado);
             restaurante.semaforoDineroRecaudado.release();
-
+            
             // Se suma la cantidad de producto vendido
             if (tipoProducto == 0) {
 
                 restaurante.semaforoPizzasVendidas.acquire();
                 restaurante.pizzasVendidas += cantidad;
+                System.out.println("Pizzas vendidas: " + restaurante.pizzasVendidas);
                 restaurante.semaforoPizzasVendidas.release();
 
             } else {
 
                 restaurante.semaforoBocadillosVendidos.acquire();
                 restaurante.bocadillosVendidos += cantidad;
+                System.out.println("Bocadillos vendidos: " + restaurante.bocadillosVendidos);
                 restaurante.semaforoBocadillosVendidos.release();
 
             }
@@ -114,6 +117,7 @@ public class Cliente extends Thread {
             // Se marcha el cliente
             restaurante.semaforoClientes.acquire();
             restaurante.numClientes--;
+            System.out.println("Clientes restantes: " + restaurante.numClientes);
             restaurante.semaforoClientes.release();
 
         } catch (InterruptedException ex) {
