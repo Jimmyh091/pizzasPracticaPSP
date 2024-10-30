@@ -39,11 +39,11 @@ public class Cocinero extends Thread{
             segundos = s;
         }
         
-        public void ejectuar(){
+        public void ejecutar(){
             try {
                 
-                for (int i = 0; i < acciones.length(); i++) {
-                    System.out.println(accion[i]);
+                for (int i = 0; i < acciones.length; i++) {
+                    System.out.println(acciones[i]);
                     Thread.sleep(segundos[i] * 1000);
                 }
                 
